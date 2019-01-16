@@ -3,12 +3,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
 
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141"
 	fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerListaProducto">
    <children>
       <Label text="Lista de Productos" />
+      <ComboBox fx:id="cmbTemporada" />
       <TilePane fx:id="tileProductos" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </VBox>
