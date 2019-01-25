@@ -3,6 +3,7 @@ package ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ControllerListaProducto {
 
@@ -22,7 +24,7 @@ public class ControllerListaProducto {
 	public void initialize()
 	{
 		cargarComboTemporada();
-		cargarProductos();
+		cargarProductosDesdeClaseProducto();
 	}
 	
 	private void cargarComboTemporada() {
@@ -34,22 +36,40 @@ public class ControllerListaProducto {
 		cmbTemporada.setItems(listaObservableTemporadas);
 	}
 
-	public void cargarProductos()
+//	public void cargarProductos()
+//	{
+//		//Creamos unos productos
+//		
+//		VBox producto1 = crearProducto("/kpop-mujer3.jpg", "Lleve lleve, su camiseta KPOP.", "1");
+//		VBox producto2 = crearProducto("/unicornia.jpeg", "Lleve lleve, su unicornia.", "5");
+//		VBox producto3 = crearProducto("/chaqueta-hombre.jpg", "Pilas con su chaqueta antigua. Lleve.", "8");
+//		VBox producto4 = crearProducto("/camisa-hombre.jpg", "Lleve la dominguera, gris como su futuro.", "9");
+//		
+//		tileProductos.getChildren().add(producto1);
+//		tileProductos.getChildren().add(producto2);
+//		tileProductos.getChildren().add(producto3);
+//		tileProductos.getChildren().add(producto4);
+//	}
+	
+	public void cargarProductosDesdeClaseProducto()
 	{
-		//Creamos unos productos
-		
-		VBox producto1 = crearProducto("/kpop-mujer3.jpg", "Lleve lleve, su camiseta KPOP.", "1");
-		VBox producto2 = crearProducto("/unicornia.jpeg", "Lleve lleve, su unicornia.", "5");
-		VBox producto3 = crearProducto("/chaqueta-hombre.jpg", "Pilas con su chaqueta antigua. Lleve.", "8");
-		VBox producto4 = crearProducto("/camisa-hombre.jpg", "Lleve la dominguera, gris como su futuro.", "9");
+		Producto p1 = new Producto(1, 10, "Camisa", "Camisa de hombre casual.", "/camisa-hombre.jpg");
+		Producto p2 = new Producto(2, 30, "Chaqueta Masculina", "Una chaqueta muy masculina, para que no duden de ti.", "/chaqueta-hombre.jpg");
+		Producto p3 = new Producto(3, 15, "Traje de Unicornio", "El traje de unicornio que te llevara al mundo arcoiris.", "/unicornia.jpeg");
+		VBox producto1 = crearProductoDesdeClaseProducto(p1);
+		VBox producto2 = crearProductoDesdeClaseProducto(p2);
+		VBox producto3 = crearProductoDesdeClaseProducto(p3);
 		
 		tileProductos.getChildren().add(producto1);
 		tileProductos.getChildren().add(producto2);
 		tileProductos.getChildren().add(producto3);
-		tileProductos.getChildren().add(producto4);
+		
+		
+		
+		
 	}
 	
-	public VBox crearProducto(String urlImagen, String descripcionProducto, String precioProducto)
+	public VBox crearProducto(String urlImagen, String nombreProducto, String descripcionProducto, String precioProducto)
 	{
 		VBox tileProducto = new VBox(2);
 		String imagenProductoURL = urlImagen;
@@ -57,6 +77,7 @@ public class ControllerListaProducto {
 		imgProducto.setFitWidth(200);
 		imgProducto.setFitHeight(260);
 		imgProducto.setPreserveRatio(true);
+		Label lblNombreProducto = new Label(nombreProducto);
 		Label lblDescripcionProducto = new Label(descripcionProducto);
 		Label lblPrecio = new Label("$ " + precioProducto);
 		
@@ -64,7 +85,7 @@ public class ControllerListaProducto {
 		
 		Button btnComprar = new Button("Comprar");
 		
-		tileProducto.getChildren().addAll(imgProducto, lblDescripcionProducto, lblPrecio, spnCantidad, btnComprar);
+		tileProducto.getChildren().addAll(imgProducto, lblNombreProducto, lblDescripcionProducto, lblPrecio, spnCantidad, btnComprar);
 		
 //		tileProducto.getChildren().add(imgProducto);
 //		tileProducto.getChildren().add(lblDescripcionProducto);
@@ -72,5 +93,20 @@ public class ControllerListaProducto {
 //		tileProducto.getChildren().add(btnComprar);
 		
 		return tileProducto;
+	}
+	
+	private VBox crearProductoDesdeClaseProducto(Producto p)
+	{
+		return crearProducto(p.getUrlImagen(), p.getNombre(), p.getDescripcion(), Double.toString(p.getPrecio()));
+	}
+	
+	public void irAVistaCarrito()
+	{
+		//Validamos
+		
+		//Cargamos la nueva pantalla
+		ControllerHelper.mostrarVista("/ViewCarrito.fxml", "Carrito de Compras");
+		Stage s = (Stage) tileProductos.getScene().getWindow();
+		s.close();
 	}
 }

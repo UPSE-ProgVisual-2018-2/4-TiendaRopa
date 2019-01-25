@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
 
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141"
@@ -11,6 +12,7 @@
    <children>
       <Label text="Lista de Productos" />
       <ComboBox fx:id="cmbTemporada" />
+      <Button fx:id="btnCarrito" text="Ir al Carrito de Compras" onAction="#irAVistaCarrito" />
       <TilePane fx:id="tileProductos" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </VBox>

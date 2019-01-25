@@ -74,4 +74,13 @@ public class ControllerIntroTienda {
 		mp.pause();
 	}
 
+	public void login()
+	{
+		//Validamos
+		
+		//Cargamos la nueva pantalla
+		ControllerHelper.mostrarVista("/ViewListaProductos.fxml", "Lista de Productos");
+		Stage s = (Stage) mediaTienda.getScene().getWindow();
+		s.close();
+	}
 }
