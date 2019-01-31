@@ -13,13 +13,18 @@ import javafx.scene.control.ListView;
 public class ControllerCarrito {
 
 	@FXML ListView<Producto> lstProductosAComprar;
+	
+	private List<Producto> listaProductosCarrito = new ArrayList<Producto>();
+	
 	public ControllerCarrito() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void initialize()
 	{
-		mockearCarritoCompras();
+		//mockearCarritoCompras();
+		listaProductosCarrito = ControllerListaProducto.listaProductosCarrito;
+		cargarListViewProductos(listaProductosCarrito);
 	}
 	
 	private void mockearCarritoCompras()
@@ -33,6 +38,10 @@ public class ControllerCarrito {
 		listaCompras.add(p2);
 		listaCompras.add(p3);
 	
+		cargarListViewProductos(listaCompras);
+	}
+
+	private void cargarListViewProductos(List<Producto> listaCompras) {
 		ObservableList<Producto> listaComprasObservable = FXCollections.observableArrayList(listaCompras);
 		lstProductosAComprar.setItems(listaComprasObservable);
 	}

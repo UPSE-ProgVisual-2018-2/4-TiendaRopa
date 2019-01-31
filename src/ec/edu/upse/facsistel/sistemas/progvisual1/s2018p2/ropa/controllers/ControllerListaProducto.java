@@ -6,6 +6,8 @@ import java.util.List;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,6 +22,8 @@ public class ControllerListaProducto {
 
 	@FXML TilePane tileProductos;
 	@FXML ComboBox<String> cmbTemporada;
+	
+	public static List<Producto> listaProductosCarrito = new ArrayList<Producto>();
 	
 	public void initialize()
 	{
@@ -56,17 +60,14 @@ public class ControllerListaProducto {
 		Producto p1 = new Producto(1, 10, "Camisa", "Camisa de hombre casual.", "/camisa-hombre.jpg");
 		Producto p2 = new Producto(2, 30, "Chaqueta Masculina", "Una chaqueta muy masculina, para que no duden de ti.", "/chaqueta-hombre.jpg");
 		Producto p3 = new Producto(3, 15, "Traje de Unicornio", "El traje de unicornio que te llevara al mundo arcoiris.", "/unicornia.jpeg");
-		VBox producto1 = crearProductoDesdeClaseProducto(p1);
-		VBox producto2 = crearProductoDesdeClaseProducto(p2);
-		VBox producto3 = crearProductoDesdeClaseProducto(p3);
+		VBox producto1 = crearTileProductoDesdeClaseProducto(p1);
+		VBox producto2 = crearTileProductoDesdeClaseProducto(p2);
+		VBox producto3 = crearTileProductoDesdeClaseProducto(p3);
 		
 		tileProductos.getChildren().add(producto1);
 		tileProductos.getChildren().add(producto2);
 		tileProductos.getChildren().add(producto3);
-		
-		
-		
-		
+
 	}
 	
 	public VBox crearProducto(String urlImagen, String nombreProducto, String descripcionProducto, String precioProducto)
@@ -85,19 +86,52 @@ public class ControllerListaProducto {
 		
 		Button btnComprar = new Button("Comprar");
 		
-		tileProducto.getChildren().addAll(imgProducto, lblNombreProducto, lblDescripcionProducto, lblPrecio, spnCantidad, btnComprar);
 		
-//		tileProducto.getChildren().add(imgProducto);
-//		tileProducto.getChildren().add(lblDescripcionProducto);
-//		tileProducto.getChildren().add(lblPrecio);
-//		tileProducto.getChildren().add(btnComprar);
+		tileProducto.getChildren().addAll(imgProducto, lblNombreProducto, lblDescripcionProducto, lblPrecio, spnCantidad, btnComprar);
 		
 		return tileProducto;
 	}
 	
-	private VBox crearProductoDesdeClaseProducto(Producto p)
+	public VBox crearProducto(Producto p)
 	{
-		return crearProducto(p.getUrlImagen(), p.getNombre(), p.getDescripcion(), Double.toString(p.getPrecio()));
+		VBox tileProducto = new VBox(2);
+		String imagenProductoURL = p.getUrlImagen();
+		ImageView imgProducto = new ImageView(imagenProductoURL);
+		imgProducto.setFitWidth(200);
+		imgProducto.setFitHeight(260);
+		imgProducto.setPreserveRatio(true);
+		Label lblNombreProducto = new Label(p.getNombre());
+		Label lblDescripcionProducto = new Label(p.getDescripcion());
+		Label lblPrecio = new Label("$ " + p.getPrecio());
+		
+		Spinner<Integer> spnCantidad = new Spinner<Integer>(0, 20, 1);
+		
+		Button btnComprar = new Button("Comprar");
+		
+		btnComprar.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				int cantidad = spnCantidad.getValue();
+				while(cantidad > 0)
+				{
+					listaProductosCarrito.add(p);
+					cantidad--;
+				}
+				
+				System.out.println("La lista de productos en el carrito es: " + listaProductosCarrito);
+			}
+		});
+		
+		tileProducto.getChildren().addAll(imgProducto, lblNombreProducto, lblDescripcionProducto, lblPrecio, spnCantidad, btnComprar);
+		
+		return tileProducto;
+	}
+	
+	private VBox crearTileProductoDesdeClaseProducto(Producto p)
+	{
+		return crearProducto(p);
 	}
 	
 	public void irAVistaCarrito()
