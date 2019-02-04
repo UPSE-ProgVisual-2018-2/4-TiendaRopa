@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
+	stylesheets="style.css"
+	fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerAdministradorProducto">
+   <children>
+      <Label text="Productos" />
+      <ListView prefHeight="200.0" prefWidth="200.0" fx:id="lstProductos" />
+      <ButtonBar buttonMinWidth="100.0" prefHeight="40.0" prefWidth="200.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Agregar" onAction="#crearNuevoProducto" />
+            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Modificar" />
+            <Button mnemonicParsing="false" text="Eliminar" onAction="#eliminarProducto" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</VBox>

@@ -7,8 +7,9 @@
 <?import javafx.scene.control.Button?>
 
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141"
-	fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerListaProducto">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.202"
+	fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerListaProducto"
+	stylesheets="style.css">
    <children>
       <Label text="Lista de Productos" />
       <ComboBox fx:id="cmbTemporada" />

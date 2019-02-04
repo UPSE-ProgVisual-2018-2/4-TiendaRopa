@@ -10,7 +10,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.control.PasswordField?>
 
-<AnchorPane prefHeight="360.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerIntroTienda"
+<AnchorPane prefHeight="360.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.controllers.ControllerIntroTienda"
  stylesheets="style.css" >
    <children>
       <MediaView fx:id="mediaTienda" fitHeight="360.0" fitWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
