@@ -14,7 +14,7 @@ public class ControllerHelper {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void mostrarVista(String uriVista, String titulo)
+	public static void mostrarVista(String uriVista, String titulo, Object o)
 	{
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource(uriVista));
@@ -24,10 +24,25 @@ public class ControllerHelper {
 			stage.setTitle(titulo);
 			Scene scene = new Scene(page, 400, 400);
 			stage.setScene(scene);
+			if(o!= null)
+			{
+				VistaCargable controller = (VistaCargable) loader.getController();
+				controller.cargarVistaConObjeto(o);
+			}
 			stage.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void mostrarVista(String uriVista, String titulo)
+	{
+		mostrarVista(uriVista, titulo, null);
+	}
+	
+	public static void mostrarVistaModifacion(String uriVista, String titulo, Object o)
+	{
+		mostrarVista(uriVista, titulo, o);
 	}
 }

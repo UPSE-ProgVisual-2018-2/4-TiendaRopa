@@ -46,5 +46,20 @@ public class ControllerAdministradorProducto {
 		Stage s = (Stage) lstProductos.getScene().getWindow();
 		s.close();
 	}
+	
+	public void modificarProducto()
+	{
+		Producto productoAModificar = lstProductos.getSelectionModel().getSelectedItem();
+		ControllerHelper.mostrarVista("/ViewProductoEditor.fxml", "Modificar Producto", productoAModificar);
+		Stage s = (Stage) lstProductos.getScene().getWindow();
+		s.close();
+	}
+	
+	public void cargarVistaLogin()
+	{
+		ControllerHelper.mostrarVista("/ViewIntroTienda.fxml", "Login");
+		Stage s = (Stage) lstProductos.getScene().getWindow();
+		s.close();
+	}
 
 }
