@@ -10,12 +10,18 @@ import javafx.stage.Stage;
 
 public class ControllerHelper {
 
+	private static String pathPorDefecto = "/ViewIntroTienda.fxml";
+	
 	public ControllerHelper() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static void mostrarVista(String uriVista, String titulo, Object o)
 	{
+		if(uriVista==null || uriVista.trim().equals(""))
+		{
+			uriVista= pathPorDefecto;
+		}
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource(uriVista));
 		try {

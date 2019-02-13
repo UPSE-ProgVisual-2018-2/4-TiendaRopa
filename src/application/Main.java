@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.List;
 
+import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,9 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		crearProductos();
 		launch(args);
+		
+		//ObjetoCarrito o1 = new ObjetoCarrito(null, 1);
+		Carrito.ObjetoCarrito2 o2 = new Carrito.ObjetoCarrito2(null, 1);
 	}
 	
 	public static void crearProductos()

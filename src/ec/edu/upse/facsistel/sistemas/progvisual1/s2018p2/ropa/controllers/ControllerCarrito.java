@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Observable;
 
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito;
-import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.ObjetoCarrito;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -32,11 +31,11 @@ import javafx.util.converter.NumberStringConverter;
 public class ControllerCarrito {
 
 	@FXML ListView<Producto> lstProductosAComprar;
-	@FXML TableView<ObjetoCarrito> tblCarrito;
-	@FXML TableColumn<ObjetoCarrito, String> tblColNombre;
-	@FXML TableColumn<ObjetoCarrito, Number> tblColPrecioUnitario;
-	@FXML TableColumn<ObjetoCarrito, Number> tblColCantidad;
-	@FXML TableColumn<ObjetoCarrito, SimpleDoubleProperty> tblColMonto;
+	@FXML TableView<Carrito.ObjetoCarrito2> tblCarrito;
+	@FXML TableColumn<Carrito.ObjetoCarrito2, String> tblColNombre;
+	@FXML TableColumn<Carrito.ObjetoCarrito2, Number> tblColPrecioUnitario;
+	@FXML TableColumn<Carrito.ObjetoCarrito2, Number> tblColCantidad;
+	@FXML TableColumn<Carrito.ObjetoCarrito2, SimpleDoubleProperty> tblColMonto;
 	@FXML Label lblTotal;
 	
 	private List<Producto> listaProductosCarrito = new ArrayList<Producto>();
@@ -58,10 +57,10 @@ public class ControllerCarrito {
 
 	private Carrito construirCarrito(Map<Producto, Integer> mapConsolidadoListaCarrito) {
 		Carrito c = new Carrito(1);
-		List<ObjetoCarrito> listaObjetosCarrito = new ArrayList<ObjetoCarrito>();
+		List<Carrito.ObjetoCarrito2> listaObjetosCarrito = new ArrayList<Carrito.ObjetoCarrito2>();
 		for(Producto p: mapConsolidadoListaCarrito.keySet())
 		{
-			ObjetoCarrito objetoCarrito = new ObjetoCarrito(p, mapConsolidadoListaCarrito.get(p));
+			Carrito.ObjetoCarrito2 objetoCarrito = new Carrito.ObjetoCarrito2(p, mapConsolidadoListaCarrito.get(p));
 			listaObjetosCarrito.add(objetoCarrito);
 		}
 		System.out.println();
@@ -95,19 +94,19 @@ public class ControllerCarrito {
 
 	private void cargarTableCarrito(Carrito c)
 	{
-		ObservableList<ObjetoCarrito> listaComprasObservable = 
+		ObservableList<Carrito.ObjetoCarrito2> listaComprasObservable = 
 				FXCollections.observableArrayList(c.getListaObjetosCarrito());
 		tblColNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 		tblColCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
 		tblColPrecioUnitario.setCellValueFactory(new PropertyValueFactory<>("precio"));
 		tblColMonto.setCellValueFactory(new PropertyValueFactory<>("monto"));
 		
-		tblColCantidad.setCellFactory(TextFieldTableCell.<ObjetoCarrito, Number>forTableColumn(new NumberStringConverter()));
+		tblColCantidad.setCellFactory(TextFieldTableCell.<Carrito.ObjetoCarrito2, Number>forTableColumn(new NumberStringConverter()));
 		tblColCantidad.setOnEditCommit(
-                new EventHandler<CellEditEvent<ObjetoCarrito, Number>>() {
+                new EventHandler<CellEditEvent<Carrito.ObjetoCarrito2, Number>>() {
                     @Override
-                    public void handle(CellEditEvent<ObjetoCarrito, Number> t) {
-                        ObjetoCarrito o = ((ObjetoCarrito) t.getTableView().getItems().get(
+                    public void handle(CellEditEvent<Carrito.ObjetoCarrito2, Number> t) {
+                    	Carrito.ObjetoCarrito2 o = ((Carrito.ObjetoCarrito2) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         );
                         o.setCantidad(new SimpleIntegerProperty(t.getNewValue().intValue()));
