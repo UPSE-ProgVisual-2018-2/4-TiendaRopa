@@ -1,5 +1,6 @@
 package ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,199 @@ public class Carrito {
 	private Cliente c;
 	private List<ObjetoCarrito2> listaObjetosCarrito = new ArrayList<ObjetoCarrito2>();
 	private SimpleDoubleProperty total = new SimpleDoubleProperty();
+	private Envio envio;
 
-	private class Envio {
+	
+	public class Envio {
+		private int codigoGuia;
+		private String destinatario;
+		private String telefonoDestinatario;
 		private String direccion;
+		private String ciudad;
+		private String pais = "Ecuador";
+		private String codigoPostal;
+		private LocalDate fechaEnvio = LocalDate.now(), fechaEstimadaLlegada; 
+		private double peso;
+		private double longitudCentimetros, altoCentimetros, anchoCentimetros;
+		private double precioEnvio = 3.0;
+		private CompaniaEnvio courrier = getCorreosDelEcuador();
+		
+		public final CompaniaEnvio ServiEntrega = new CompaniaEnvio("Servientrega");
+		public final CompaniaEnvio CorreosDelEcuador = new CompaniaEnvio("Correos del Ecuador");
+		public final CompaniaEnvio TramacoExpress = new CompaniaEnvio("Tramaco Express");
+		
+		public class CompaniaEnvio{
+			private String nombreCompania;
+			
+			CompaniaEnvio(String nombreCompania)
+			{
+				this.nombreCompania = nombreCompania;
+			}
+		}
+
+		
+		
+		public Envio(int codigoGuia, LocalDate fechaEnvio) {
+			this.codigoGuia = codigoGuia;
+			this.fechaEnvio = fechaEnvio;
+			this.direccion = c.getDireccion();
+			this.destinatario = c.getNombre();
+			this.telefonoDestinatario = c.getTelefono();
+		}
+
+
+		public Envio(int codigoGuia, String destinatario, String telefonoDestinatario, String direccion, String ciudad,
+				String pais, String codigoPostal) {
+			this.codigoGuia = codigoGuia;
+			this.destinatario = destinatario;
+			this.telefonoDestinatario = telefonoDestinatario;
+			this.direccion = direccion;
+			this.ciudad = ciudad;
+			this.pais = pais;
+			this.codigoPostal = codigoPostal;
+			this.courrier = courrier;
+		}
+
+
+		public int getCodigoGuia() {
+			return codigoGuia;
+		}
+
+		public void setCodigoGuia(int codigoGuia) {
+			this.codigoGuia = codigoGuia;
+		}
+
+		public String getDestinatario() {
+			return destinatario;
+		}
+
+		public void setDestinatario(String destinatario) {
+			this.destinatario = destinatario;
+		}
+
+		public String getTelefonoDestinatario() {
+			return telefonoDestinatario;
+		}
+
+		public void setTelefonoDestinatario(String telefonoDestinatario) {
+			this.telefonoDestinatario = telefonoDestinatario;
+		}
+
+		public String getDireccion() {
+			return direccion;
+		}
+
+		public void setDireccion(String direccion) {
+			this.direccion = direccion;
+		}
+
+		public String getCiudad() {
+			return ciudad;
+		}
+
+		public void setCiudad(String ciudad) {
+			this.ciudad = ciudad;
+		}
+
+		public String getPais() {
+			return pais;
+		}
+
+		public void setPais(String pais) {
+			this.pais = pais;
+		}
+
+		public String getCodigoPostal() {
+			return codigoPostal;
+		}
+
+		public void setCodigoPostal(String codigoPostal) {
+			this.codigoPostal = codigoPostal;
+		}
+
+		public LocalDate getFechaEnvio() {
+			return fechaEnvio;
+		}
+
+		public void setFechaEnvio(LocalDate fechaEnvio) {
+			this.fechaEnvio = fechaEnvio;
+		}
+
+		public LocalDate getFechaEstimadaLlegada() {
+			return fechaEstimadaLlegada;
+		}
+
+		public void setFechaEstimadaLlegada(LocalDate fechaEstimadaLlegada) {
+			this.fechaEstimadaLlegada = fechaEstimadaLlegada;
+		}
+
+		public double getPeso() {
+			return peso;
+		}
+
+		public void setPeso(double peso) {
+			this.peso = peso;
+		}
+
+		public double getLongitudCentimetros() {
+			return longitudCentimetros;
+		}
+
+		public void setLongitudCentimetros(double longitudCentimetros) {
+			this.longitudCentimetros = longitudCentimetros;
+		}
+
+		public double getAltoCentimetros() {
+			return altoCentimetros;
+		}
+
+		public void setAltoCentimetros(double altoCentimetros) {
+			this.altoCentimetros = altoCentimetros;
+		}
+
+		public double getAnchoCentimetros() {
+			return anchoCentimetros;
+		}
+
+		public void setAnchoCentimetros(double anchoCentimetros) {
+			this.anchoCentimetros = anchoCentimetros;
+		}
+
+		public double getPrecioEnvio() {
+			return precioEnvio;
+		}
+
+		public void setPrecioEnvio(double precioEnvio) {
+			this.precioEnvio = precioEnvio;
+		}
+
+		public CompaniaEnvio getCourrier() {
+			return courrier;
+		}
+
+		public void setCourrier(CompaniaEnvio courrier) {
+			this.courrier = courrier;
+		}
+
+		public CompaniaEnvio getServiEntrega() {
+			return ServiEntrega;
+		}
+
+		public CompaniaEnvio getCorreosDelEcuador() {
+			return CorreosDelEcuador;
+		}
+
+		public CompaniaEnvio getTramacoExpress() {
+			return TramacoExpress;
+		}
+
+
+		@Override
+		public String toString() {
+			return "Envio [codigoGuia=" + codigoGuia + ", destinatario=" + destinatario + ", telefonoDestinatario="
+					+ telefonoDestinatario + ", direccion=" + direccion + ", ciudad=" + ciudad + ", pais=" + pais
+					+ ", codigoPostal=" + codigoPostal + ", fechaEnvio=" + fechaEnvio + ", courrier=" + courrier + "]";
+		}
 		
 	}
 	
@@ -155,6 +346,23 @@ public class Carrito {
 
 	public SimpleDoubleProperty getTotalProperty() {
 		return total;
+	}
+	
+	public void enviarCarrito()
+	{
+		envio = new Envio(1234123, LocalDate.now().plusDays(1));
+	}
+
+	public Cliente getC() {
+		return c;
+	}
+
+	public void setC(Cliente c) {
+		this.c = c;
+	}
+
+	public Envio getEnvio() {
+		return envio;
 	}
 
 	@Override

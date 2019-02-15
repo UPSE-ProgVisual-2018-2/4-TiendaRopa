@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito;
+import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito.Envio;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,10 @@ public class Main extends Application {
 		
 		//ObjetoCarrito o1 = new ObjetoCarrito(null, 1);
 		Carrito.ObjetoCarrito2 o2 = new Carrito.ObjetoCarrito2(null, 1);
+		
+		Carrito c = new Carrito(123);
+		Carrito.Envio e = c.new Envio(231, "Juan", "09111111", "La principal y la que cruza", "Salinas", "Ecuador", "EC240111");
+		e.setCourrier(e.getTramacoExpress());
 	}
 	
 	public static void crearProductos()
