@@ -7,11 +7,13 @@ public class Cliente {
 	private String direccion;
 	private String email;
 	private String telefono;
-	
-	public Cliente() {
-		// TODO Auto-generated constructor stub
-	}
 
+	public Cliente(String cedula, String nombre) {
+		super();
+		this.cedula = cedula;
+		this.nombre = nombre;
+	}
+	
 	public Cliente(String cedula, String nombre, String direccion, String email, String telefono) {
 		super();
 		this.cedula = cedula;
@@ -19,12 +21,6 @@ public class Cliente {
 		this.direccion = direccion;
 		this.email = email;
 		this.telefono = telefono;
-	}
-
-	public Cliente(String cedula, String nombre) {
-		super();
-		this.cedula = cedula;
-		this.nombre = nombre;
 	}
 
 	public String getNombre() {
@@ -68,7 +64,5 @@ public class Cliente {
 		return "Cliente [cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", email=" + email
 				+ ", telefono=" + telefono + "]";
 	}
-	
-	
 
 }
