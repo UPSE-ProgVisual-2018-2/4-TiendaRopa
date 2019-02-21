@@ -365,6 +365,12 @@ public class Carrito {
 		return envio;
 	}
 
+	public void facturar()
+	{
+		Factura f = new Factura();
+		f.generarPDF(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "Carrito [id=" + id + ", listaObjetosCarrito=" + listaObjetosCarrito + "]";

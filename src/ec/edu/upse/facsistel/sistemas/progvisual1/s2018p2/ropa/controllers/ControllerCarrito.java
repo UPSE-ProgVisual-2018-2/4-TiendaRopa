@@ -15,8 +15,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -25,6 +27,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.NumberStringConverter;
 
@@ -37,6 +40,7 @@ public class ControllerCarrito {
 	@FXML TableColumn<Carrito.ObjetoCarrito2, Number> tblColCantidad;
 	@FXML TableColumn<Carrito.ObjetoCarrito2, SimpleDoubleProperty> tblColMonto;
 	@FXML Label lblTotal;
+	@FXML Button btnIrAEnvio;
 	
 	private List<Producto> listaProductosCarrito = new ArrayList<Producto>();
 	
@@ -52,6 +56,17 @@ public class ControllerCarrito {
 		Map<Producto, Integer> mapConsolidadoListaCarrito = consolidarListaProductosCarrito(listaProductosCarrito);
 		Carrito c = construirCarrito(mapConsolidadoListaCarrito);
 		cargarTableCarrito(c);
+		
+		btnIrAEnvio.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				ControllerHelper.mostrarVista("/ViewDireccion.fxml", "Envio");
+				Stage s = (Stage) btnIrAEnvio.getScene().getWindow();
+				s.close();
+			}
+			
+		});
 	}
 
 

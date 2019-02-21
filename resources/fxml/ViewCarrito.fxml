@@ -33,7 +33,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" text="Cancelar" />
-            <Button mnemonicParsing="false" text="Finalizar Compra" />
+            <Button mnemonicParsing="false" text="Ir a Detalles de Envio" fx:id="btnIrAEnvio"/>
          </children>
       </HBox>
    </children>

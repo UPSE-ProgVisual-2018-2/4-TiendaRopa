@@ -5,6 +5,7 @@ import java.util.List;
 
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Carrito.Envio;
+import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Compania;
 import ec.edu.upse.facsistel.sistemas.progvisual1.s2018p2.ropa.model.Producto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	public static List<Producto> listaProductosPrincipal = new ArrayList<Producto>();
+	public static Compania compania = new Compania("Novedades GAIBOR", "2400000012", "Barrio 9 de Octubre S/N", "Juan Gaibor", "0912345678", "gaibor@gaibor.com");
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -33,14 +35,20 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		crearProductos();
-		launch(args);
-		
+
 		//ObjetoCarrito o1 = new ObjetoCarrito(null, 1);
-		Carrito.ObjetoCarrito2 o2 = new Carrito.ObjetoCarrito2(null, 1);
+		Carrito.ObjetoCarrito2 o1 = new Carrito.ObjetoCarrito2(listaProductosPrincipal.get(1), 4);
+		Carrito.ObjetoCarrito2 o2 = new Carrito.ObjetoCarrito2(listaProductosPrincipal.get(0), 3);
 		
 		Carrito c = new Carrito(123);
+		c.getListaObjetosCarrito().add(o1);
+		c.getListaObjetosCarrito().add(o2);
+		c.facturar();
 		Carrito.Envio e = c.new Envio(231, "Juan", "09111111", "La principal y la que cruza", "Salinas", "Ecuador", "EC240111");
 		e.setCourrier(e.getTramacoExpress());
+		
+		launch(args);
+		
 	}
 	
 	public static void crearProductos()
